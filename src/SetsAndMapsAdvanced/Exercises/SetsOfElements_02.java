@@ -1,4 +1,4 @@
-package SetsАndMapsAdvanced.Exercises;
+package SetsAndMapsAdvanced.Exercises;
 
 import java.util.*;
 // the catch for this task is to think about in which set you have to iterate through (answer: the first)
