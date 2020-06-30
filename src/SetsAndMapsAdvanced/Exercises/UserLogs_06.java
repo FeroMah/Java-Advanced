@@ -25,12 +25,13 @@ public class UserLogs_06 {
         }
 
 
-        users.forEach((key, value) -> {
+        users.entrySet().forEach(user -> {
             StringBuilder sb = new StringBuilder();
 
-            sb.append(key).append(":").append(System.lineSeparator());
+            sb.append(user).append(":").append(System.lineSeparator());
 
-            value.forEach((key1, value1) -> sb.append(key1).append(" => ").append(value1).append(", "));
+            user.getValue()
+                    .forEach((key, value) -> sb.append(key).append(" => ").append(value).append(", "));
 
             System.out.println(sb.toString().substring(0, sb.length() - 2) + ".");
         });
