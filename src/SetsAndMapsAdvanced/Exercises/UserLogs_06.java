@@ -24,13 +24,12 @@ public class UserLogs_06 {
             input = br.readLine().split("\\s+");
         }
 
-
-        users.entrySet().forEach(user -> {
+        users.forEach((key1, value1) -> {
             StringBuilder sb = new StringBuilder();
 
-            sb.append(user).append(":").append(System.lineSeparator());
+            sb.append(key1).append(":").append(System.lineSeparator());
 
-            user.getValue()
+            value1
                     .forEach((key, value) -> sb.append(key).append(" => ").append(value).append(", "));
 
             System.out.println(sb.toString().substring(0, sb.length() - 2) + ".");
