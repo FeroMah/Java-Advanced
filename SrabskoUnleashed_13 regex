@@ -1,5 +1,0 @@
-Regex solution from work:
-
-(?<singer>[A-Za-z]+(\s[A-Za-z])*)\s@(?<town>[A-Za-z]+\s([A-Za-z]+\s)*)(?<price>(\d+))\s(?<tickets>(\d+))
-
-Have to simplify it! It has many reapeating sections!
