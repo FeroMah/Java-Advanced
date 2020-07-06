@@ -1,5 +1,6 @@
 # IntelliJ folders
 .idea/
+out/
 
 # Temporary Doc Files
 *.docx#
