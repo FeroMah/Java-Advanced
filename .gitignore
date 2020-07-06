@@ -1,3 +1,9 @@
+# IntelliJ folders
+.idea/
+
+# Temporary Doc Files
+*.docx#
+
 # Compiled class file
 *.class
 
