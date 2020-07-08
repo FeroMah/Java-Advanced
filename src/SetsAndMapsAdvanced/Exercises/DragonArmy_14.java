@@ -46,6 +46,7 @@ public class DragonArmy_14 {
             double bufferHP = 0;
             double bufferAR = 0;
 
+
             for (Map.Entry<String, int[]> dragon : dragonType.getValue().entrySet()) {
                 bufferDMG += dragon.getValue()[0];
                 bufferHP += dragon.getValue()[1];
