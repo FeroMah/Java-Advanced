@@ -1,4 +1,4 @@
-package guild;
+package ExamPreparation.PractisExam.Exam3_22_Feb_2020.Guild_V2_Map.guild;
 
 
 public class Main {

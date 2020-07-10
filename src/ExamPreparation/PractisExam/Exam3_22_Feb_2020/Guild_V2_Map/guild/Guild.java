@@ -1,5 +1,4 @@
-package guild;
-
+package ExamPreparation.PractisExam.Exam3_22_Feb_2020.Guild_V2_Map.guild;
 
 
 import java.util.LinkedHashMap;
@@ -8,7 +7,7 @@ import java.util.Map;
 public class Guild {
     private String name;
     private int capacity;
-    private Map<String,Player> roster;
+    private Map<String, Player> roster;
 
     public Guild(String name, int capacity) {
         this.name = name;
@@ -53,30 +52,11 @@ public class Guild {
 
     public void promotePlayer(String name) {
         this.getRoster().get(name).setRank("Member");
-//                stream()
-//                .filter(p -> p.getName().equals(name))
-//                .collect(Collectors.toList()).get(0)
-//                .setRank("Member");
     }
-//    public void promotePlayer(String name) {
-//        ListIterator<Player> playerListIterator = this.getRoster().listIterator();
-//
-//        while (playerListIterator.hasNext()) {
-//            Player player = playerListIterator.next();
-//            if (player.getName().equals(name)) {
-//               player.setRank("Member");
-//                break;
-//            }
-//        }
-//
-//    }
+
 
     public void demotePlayer(String name) {
         this.getRoster().get(name).setRank("Trial");
-//                stream()
-//                .filter(p -> p.getName().equals(name))
-//                .collect(Collectors.toList()).get(0)
-//                .setRank("Trial");
     }
 
     public Player[] kickPlayersByClass(String clazz) {
