@@ -1,89 +1,88 @@
 package ExamPreparation.PractisExam.Exam3_22_Feb_2020.ReVolt_02;
 
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        int matrixSize =Integer.parseInt( sc.nextLine());
-        int commandsCount = Integer.parseInt( sc.nextLine());
+        BufferedReader br = new BufferedReader( new InputStreamReader(System.in));
+        int matrixSize = Integer.parseInt(br.readLine());
+        int commandsCount = Integer.parseInt(br.readLine());
 
-        int playerPosY=0;
-        int playerPosX=0;
+        int playerPosY = 0;
+        int playerPosX = 0;
 
-        String[][] matrix = new String [matrixSize] [matrixSize] ;
+        String[][] matrix = new String[matrixSize][matrixSize];
 
         for (int y = 0; y < matrixSize; y++) {
-            String lineInput= sc.nextLine();
+            String lineInput = br.readLine();
             for (int x = 0; x < matrix.length; x++) {
-                String symbol= String.valueOf( lineInput.charAt(x));
-                matrix[y][x] =  symbol;
+                String symbol = String.valueOf(lineInput.charAt(x));
+                matrix[y][x] = symbol;
 
-                if (symbol.equals("f")){
-                    playerPosY= y;
-                    playerPosX= x;
+                if (symbol.equals("f")) {
+                    playerPosY = y;
+                    playerPosX = x;
                 }
             }
         }
 
-        while (true){
+        while (true) {
 
-            if(commandsCount==0){
+            if (commandsCount == 0) {
                 System.out.println("Player lost!");
                 break;
             }
 
-            String command = sc.nextLine();
+            String command = br.readLine();
 
-            int newPosY=playerPosY;
-            int newPosX=playerPosX;
+            int newPosY = playerPosY;
+            int newPosX = playerPosX;
 
-            matrix[playerPosY][playerPosX]="-";
+            matrix[playerPosY][playerPosX] = "-";
 
-            switch(command){
+            switch (command) {
                 case "down":
-                    newPosY = playerPosY+1;
+                    newPosY = playerPosY + 1;
 
                     break;
 
                 case "up":
-                    newPosY = playerPosY-1;
+                    newPosY = playerPosY - 1;
                     break;
 
                 case "left":
-                    newPosX = playerPosX-1;
+                    newPosX = playerPosX - 1;
                     break;
 
                 case "right":
-                    newPosX = playerPosX+1;
+                    newPosX = playerPosX + 1;
                     break;
             }
 
 
-
-            if( newPosX >= matrixSize ){
-                newPosX -=matrixSize;
+            if (newPosX >= matrixSize) {
+                newPosX -= matrixSize;
                 playerPosX = newPosX;
-            }if( newPosX < 0 ){
-                newPosX +=matrixSize;
+            }
+            if (newPosX < 0) {
+                newPosX += matrixSize;
                 playerPosX = newPosX;
             }
 
-            if( newPosY >= matrixSize ){
-                newPosY -=matrixSize;
+            if (newPosY >= matrixSize) {
+                newPosY -= matrixSize;
                 playerPosY = newPosY;
             }
 
-            if( newPosY < 0 ){
-                newPosY +=matrixSize;
+            if (newPosY < 0) {
+                newPosY += matrixSize;
                 playerPosY = newPosY;
             }
 
 
-
-            if (matrix[newPosY] [newPosX].equals("B")){
-
-                switch(command){
+            if ("B".equals(matrix[newPosY][newPosX])) {
+                switch (command) {
                     case "down":
                         newPosY += 1;
 
@@ -94,7 +93,7 @@ public class Main {
                         break;
 
                     case "left":
-                        newPosX -=1;
+                        newPosX -= 1;
                         break;
 
                     case "right":
@@ -102,54 +101,55 @@ public class Main {
                         break;
 
                 }
-                if( newPosX >= matrixSize ){
-                    newPosX -=matrixSize;
+                if (newPosX >= matrixSize) {
+                    newPosX -= matrixSize;
                     playerPosX = newPosX;
-                }if( newPosX < 0 ){
-                    newPosX +=matrixSize;
+                }
+                if (newPosX < 0) {
+                    newPosX += matrixSize;
                     playerPosX = newPosX;
                 }
 
-                if( newPosY >= matrixSize ){
-                    newPosY -=matrixSize;
+                if (newPosY >= matrixSize) {
+                    newPosY -= matrixSize;
                     playerPosY = newPosY;
                 }
 
-                if( newPosY < 0 ){
-                    newPosY +=matrixSize;
+                if (newPosY < 0) {
+                    newPosY += matrixSize;
                     playerPosY = newPosY;
                 }
-
-            }else if (matrix[newPosY] [newPosX].equals("T")){
+            } else if ("T".equals(matrix[newPosY][newPosX])) {
                 newPosX = playerPosX;
                 newPosY = playerPosY;
-            }else if (matrix[newPosY] [newPosX].equals("F")){
-                matrix[playerPosY][playerPosX] ="-";
-                matrix[newPosY][newPosX]="f";
+            }  if ("F".equals(matrix[newPosY][newPosX])) {
+                matrix[playerPosY][playerPosX] = "-";
+                matrix[newPosY][newPosX] = "f";
                 System.out.println("Player won!");
-                break;
+                break ;
             }
-            matrix[playerPosY][playerPosX]="-";
+            matrix[playerPosY][playerPosX] = "-";
 
 
             playerPosX = newPosX;
             playerPosY = newPosY;
-            matrix[playerPosY][playerPosX]="f";
+            matrix[playerPosY][playerPosX] = "f";
 
             commandsCount--;
+//            Only for testing:
+//            printMatrix(matrix);
         }
 
         printMatrix(matrix);
 
     }
 
-
-    private static void printMatrix(String[][] matrix){
+    private static void printMatrix(String[][] matrix) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < matrix.length; i++) {
+        for (String[] strings : matrix) {
 
             for (int j = 0; j < matrix.length; j++) {
-                sb.append(matrix[i][j]);
+                sb.append(strings[j]);
             }
             sb.append(System.lineSeparator());
 
@@ -158,4 +158,3 @@ public class Main {
 
     }
 }
-
