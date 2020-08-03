@@ -42,17 +42,14 @@ public class TheMatrix {
 
         recursion(theMatrix, rowIndex, colIndex, toBeChanged, fillSymbols);
 
-        theMatrix.get(startingCoordinates[0]).set(startingCoordinates[1], toBeChanged);
-        recursion(theMatrix, rowIndex, colIndex, toBeChanged, fillSymbols);
-
 
         System.out.println(getResultMatrix(theMatrix));
 
     }
 
-    private static String getResultMatrix(List<List<String>> theMatrix){
+    private static String getResultMatrix(List<List<String>> theMatrix) {
         StringBuilder sb = new StringBuilder();
-        theMatrix.forEach(row->{
+        theMatrix.forEach(row -> {
             row.forEach(sb::append);
             sb.append(System.lineSeparator());
         });
@@ -60,32 +57,20 @@ public class TheMatrix {
     }
 
     private static void recursion(List<List<String>> theMatrix, int rowIndex, int colIndex, String toBeChanged, String fillSymbols) {
-        theMatrix.get(rowIndex).set(colIndex, fillSymbols);
 
-        if (areValidCoordinates(rowIndex, ++colIndex, theMatrix)) {
-            if (theMatrix.get(rowIndex).get(colIndex).equals(toBeChanged)) {
-                recursion(theMatrix, rowIndex, colIndex, toBeChanged, fillSymbols);
-            } else --colIndex;
+        if(areValidCoordinates(rowIndex,colIndex,theMatrix)){
+            if(theMatrix.get(rowIndex).get(colIndex).equals(toBeChanged)){
+                theMatrix.get(rowIndex).set(colIndex,fillSymbols);
 
-        }
-
-        if (areValidCoordinates(rowIndex, --colIndex, theMatrix)) {
-            if (theMatrix.get(rowIndex).get(colIndex).equals(toBeChanged)) {
-                recursion(theMatrix, rowIndex, colIndex, toBeChanged, fillSymbols);
-            } else ++colIndex;
-
-        }
-        if (areValidCoordinates(++rowIndex, colIndex, theMatrix)) {
-            if (theMatrix.get(rowIndex).get(colIndex).equals(toBeChanged)) {
-                recursion(theMatrix, rowIndex, colIndex, toBeChanged, fillSymbols);
-            } else --rowIndex;
-
-        }
-        if (areValidCoordinates(--rowIndex, colIndex, theMatrix)) {
-            if (theMatrix.get(rowIndex).get(colIndex).equals(toBeChanged)) {
-                recursion(theMatrix, rowIndex, colIndex, toBeChanged, fillSymbols);
-            } else ++rowIndex;
-
+                //move right
+                recursion(theMatrix,rowIndex,colIndex+1,toBeChanged,fillSymbols);
+                //move left
+                recursion(theMatrix,rowIndex,colIndex-1,toBeChanged,fillSymbols);
+                //move up
+                recursion(theMatrix,rowIndex-1,colIndex,toBeChanged,fillSymbols);
+                //move down
+                recursion(theMatrix,rowIndex+1,colIndex,toBeChanged,fillSymbols);
+            }
         }
     }
 
