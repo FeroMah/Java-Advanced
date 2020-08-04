@@ -33,15 +33,16 @@ public class TheMatrix {
 
         String fillSymbols = br.readLine();
 
-        int[] startingCoordinates = Arrays.stream(br.readLine().split("\\s+")).limit(2).mapToInt(Integer::parseInt).toArray();
+        int[] startingCoordinates = Arrays.stream(br.readLine().split("\\s+"))
+                .limit(2)
+                .mapToInt(Integer::parseInt)
+                .toArray();
         int rowIndex = startingCoordinates[0];
         int colIndex = startingCoordinates[1];
 
         String toBeChanged = getStringToBeChanged(theMatrix, rowIndex, colIndex);
 
-
         recursion(theMatrix, rowIndex, colIndex, toBeChanged, fillSymbols);
-
 
         System.out.println(getResultMatrix(theMatrix));
 
