@@ -14,9 +14,11 @@ public class ParkingSystem_10 {
                 .mapToInt(Integer::parseInt)
                 .limit(2).toArray();
 
-        String[][] parkingLot = new String[dimensions[0]][dimensions[1]];
+        Boolean[][] parkingLot = new Boolean[dimensions[0]][dimensions[1]];
 
-        fillCellsWithStrings(parkingLot);
+        for (int i = 0; i < parkingLot.length; i++) {
+            parkingLot[i][0] = true;
+        }
 
         String input = br.readLine().trim();
         while (true) {
@@ -31,39 +33,40 @@ public class ParkingSystem_10 {
             int spotRow = params[1];
             int spotCol = params[2];
 
-            if (parkingLot[spotRow][spotCol].equals("Free")) {
-                parkingLot[spotRow][spotCol] = "Busy"; // car is parked at this spot
+            if (parkingLot[spotRow][spotCol] == null) {
+                parkingLot[spotRow][spotCol] = true; // car is parked at this spot
                 int count = Math.abs(enteringRow - spotRow) + spotRow + 1;
                 System.out.println(count);
 
 
             } else {
-
-                for (int i = 1; i < parkingLot.length; i++) {
+                int i = 1;
+                while (true) {
                     int spotColToLeft = spotCol - i;
                     int spotColToRight = spotCol + i;
 
-                    if(spotColToLeft<=0 && spotColToRight>=parkingLot[0].length){
-                        System.out.println(String.format("Row %s full%n", spotRow));
+                    if (spotColToLeft <= 1 && spotColToRight >= parkingLot[0].length) {
+                        System.out.println(String.format("Row %s full", spotRow));
                         break;
                     }
 
                     if (isValidIndex(dimensions, spotColToLeft) &&
-                            "Free".equals(parkingLot[spotRow][spotColToLeft])) {
-                        parkingLot[spotRow][spotColToLeft] = "Busy";
+                            parkingLot[spotRow][spotColToLeft] == null) {
+                        parkingLot[spotRow][spotColToLeft] = true;
                         int count = Math.abs(enteringRow - spotRow) + spotColToLeft + 1;
                         System.out.println(count);
                         break;
                     } else if (isValidIndex(dimensions, spotColToRight) &&
-                            "Free".equals(parkingLot[spotRow][spotColToRight])) {
-                        parkingLot[spotRow][spotColToRight] = "Busy";
+                            parkingLot[spotRow][spotColToRight] == null) {
+                        parkingLot[spotRow][spotColToRight] = true;
                         int count = Math.abs(enteringRow - spotRow) + spotColToRight + 1;
                         System.out.println(count);
                         break;
                     }
+                    i++;
                 }
             }
-
+//            System.out.println(parkingLotToString(parkingLot));
             input = br.readLine().trim();
         }
     }
@@ -73,20 +76,7 @@ public class ParkingSystem_10 {
     }
 
 
-    private static void fillCellsWithStrings(String[][] parkingLot) {
-        for (int row = 0; row < parkingLot.length; row++) {
-            for (int col = 0; col < parkingLot[row].length; col++) {
-                // fill first column with String 'Road' ; no car can park there
-                if (col == 0) {
-                    parkingLot[row][0] = "Road";
-                } else
-                    // fill all other cells with 'Free';
-                    parkingLot[row][col] = "Free";
-            }
-        }
-    }
-
-    private static String print(String[][] parkingLot) {
+    private static String parkingLotToString(Boolean[][] parkingLot) {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < parkingLot.length; i++) {
