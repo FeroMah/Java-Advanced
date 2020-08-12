@@ -1,8 +1,9 @@
 package DefiningClasses.Exercises.CatLady_09.breads;
 
 import DefiningClasses.Exercises.CatLady_09.Cat;
+import DefiningClasses.Exercises.CatLady_09.CatImpl;
 
-public class Cymric  extends Cat {
+public class Cymric  extends CatImpl {
     private double furLength;
 
     public Cymric(String name, double furLength) {

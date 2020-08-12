@@ -1,8 +1,9 @@
 package DefiningClasses.Exercises.CatLady_09.breads;
 
 import DefiningClasses.Exercises.CatLady_09.Cat;
+import DefiningClasses.Exercises.CatLady_09.CatImpl;
 
-public class StreetExtraordinaire extends Cat {
+public class StreetExtraordinaire extends CatImpl {
     private double decibelsOfMeows;
 
     public StreetExtraordinaire(String name, int decibelsOfMeows) {

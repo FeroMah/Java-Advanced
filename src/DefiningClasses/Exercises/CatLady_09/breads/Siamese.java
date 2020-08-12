@@ -1,8 +1,9 @@
 package DefiningClasses.Exercises.CatLady_09.breads;
 
 import DefiningClasses.Exercises.CatLady_09.Cat;
+import DefiningClasses.Exercises.CatLady_09.CatImpl;
 
-public class Siamese extends Cat {
+public class Siamese extends CatImpl {
     private double earSize;
 
     public Siamese(String name, double earSize) {
