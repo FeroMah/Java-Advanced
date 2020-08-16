@@ -2,6 +2,7 @@ package ExamPreparation.PractisExam.Exam5_28_June_2020.Parking_03.parking;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 
 
 public class Parking {
@@ -41,7 +42,7 @@ public class Parking {
 
     public Car getLatestCar(){
         return  this.data.stream()
-                .max((c1, c2) -> Integer.compare(c1.getYear(), c2.getYear()))
+                .max(Comparator.comparingInt(Car::getYear))
                 .orElse(null);
     }
 
